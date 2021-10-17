@@ -1,0 +1,27 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: Graphite
+    orgId: 1
+
+datasources:
+- name: PostgreSQL
+  type: postgres
+  typename: PostgreSQL
+  access: proxy
+  url: 'plnmonitordb:5432'
+  user: grafana
+  database: plnmonitor
+  basicAuth: false
+  isDefault: true
+  jsonData:
+     postgresVersion: 904
+     sslmode: disable
+     tlsAuth: false
+     tlsAuthWithCACert: false
+     tlsConfigurationMethod: 'file-path'
+     tlsSkipVerify: true
+  secureJsonData:
+     password: "grafana"
+  version: 1
+  readonly: false

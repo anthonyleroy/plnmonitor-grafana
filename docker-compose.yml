@@ -1,0 +1,70 @@
+version: "2.2"
+services:
+  plnmonitordb:
+    build: 
+       context: .
+       dockerfile: DockerfileDatabase
+    ports:
+       - "5432:5432"
+    volumes: 
+       - pln_dbdata:/var/lib/postgresql/data
+    environment:
+       POSTGRES_DB: plnmonitor
+       POSTGRES_USER: plnmonitor
+       POSTGRES_PASSWORD: plnmonitor
+       PGDATA: /var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plnmonitor"]
+      interval: 20s
+      timeout: 60s
+      retries: 5
+    networks:
+      plnmonnetwork:
+          aliases:
+          - plnmonitordb
+
+  plnmondaemon:
+    build: 
+       context: .
+       dockerfile: DockerfileDaemon  
+    links:
+      - plnmonitordb
+    depends_on:
+       plnmonitordb:
+          condition: service_healthy
+    environment:
+        WAIT_HOSTS: plnmonitordb:5432
+    networks:
+      - plnmonnetwork
+    volumes:
+      - ./template:/opt/template
+      - ./provisioning:/opt/provisioning
+  plnmonwebapp:
+    build: 
+       context: .
+       dockerfile: DockerfileWebapp
+    ports:
+       - "3000:3000"
+    links:
+      - plnmonitordb
+    depends_on:
+       plnmonitordb:
+          condition: service_healthy
+    environment:
+        WAIT_HOSTS: plnmonitordb:5432
+        GF_INSTALL_PLUGINS: grafana-worldmap-panel
+        USER: plnmonitor
+        PASSWORD: plnmonitor
+    volumes:
+      - ./provisioning:/etc/grafana/provisioning
+    networks:
+      - plnmonnetwork
+
+      
+volumes: 
+  pln_dbdata:
+  
+networks:
+  plnmonnetwork:
+    driver: bridge
+
