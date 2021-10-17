@@ -29,7 +29,7 @@
       },
       "id": 8,
       "panels": [],
-      "title": "SAFE PLN dashboard",
+      "title": "LOCKSS network dashboard",
       "type": "row"
     },
     {
@@ -93,7 +93,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT tdb_publisher, SUM (AUsize) AS AU_size from (SELECT name, tdb_publisher, MAX(content_size) as AUsize\nFROM au_current GROUP BY name, tdb_publisher) AS TDB GROUP BY tdb_publisher",
+          "rawSql": "SELECT tdb_publisher, SUM (AUsize) AS AU_size from (SELECT name, tdb_publisher, MAX(content_size) as AUsize\nFROM plnmonitor.au_current GROUP BY name, tdb_publisher) AS TDB GROUP BY tdb_publisher",
           "refId": "A",
           "select": [
             [
@@ -202,7 +202,7 @@
               }
             ]
           ],
-          "table": "lockss_box_info",
+          "table": "plnmonitor.lockss_box_info",
           "timeColumn": "box",
           "timeColumnType": "int4",
           "where": []
@@ -276,7 +276,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  max(active_aus)\nFROM lockss_box_data_current\nORDER BY 1",
+          "rawSql": "SELECT\n  max(active_aus)\nFROM plnmonitor.lockss_box_data_current\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -360,7 +360,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "with nbcopies as (select name, SUM(recent_poll_agreement) from au_current  GROUP BY 1 ORDER BY 1)  select (AVG(sum)) from nbcopies ",
+          "rawSql": "with nbcopies as (select name, SUM(recent_poll_agreement) from plnmonitor.au_current  GROUP BY 1 ORDER BY 1)  select (AVG(sum)) from nbcopies ",
           "refId": "A",
           "select": [
             [
@@ -447,7 +447,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select avg(recent_poll_agreement) from au_current",
+          "rawSql": "select avg(recent_poll_agreement) from plnmonitor.au_current",
           "refId": "A",
           "select": [
             [
@@ -529,7 +529,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  MAX(last_completed_poll)\nFROM au_current\n",
+          "rawSql": "SELECT\n  MAX(last_completed_poll)\nFROM plnmonitor.au_current\n",
           "refId": "A",
           "select": [
             [
@@ -645,7 +645,7 @@
               }
             ]
           ],
-          "table": "lockss_box_data_version",
+          "table": "plnmonitor.lockss_box_data_version",
           "timeColumn": "updated_at",
           "timeColumnType": "timestamptz",
           "where": [
@@ -672,10 +672,6 @@
       "decimals": 0,
       "description": "",
       "esMetric": "Count",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 14,
         "w": 24,
@@ -711,7 +707,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  institution.shortname,\n  latitude,\n  longitude,\n  lockss_box_data_current.active_aus\nFROM lockss_box_info\nINNER JOIN plnmonitor.institution ON lockss_box_info.institution=institution.id\nINNER JOIN plnmonitor.lockss_box_data_current ON lockss_box_info.box=lockss_box_data_current.box\nORDER BY 1\n",
+          "rawSql": "SELECT\n  lockss_box_info.name AS shortname,\n  latitude,\n  longitude,\n  lockss_box_data_current.active_aus\nFROM plnmonitor.lockss_box_info\nINNER JOIN plnmonitor.lockss_box_data_current ON lockss_box_info.box=lockss_box_data_current.box\nORDER BY 1\n",
           "refId": "A",
           "select": [
             [
@@ -756,19 +752,7 @@
           },
           "decimals": 0,
           "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
+ 
           "unit": "decbytes"
         },
         "overrides": []
@@ -807,19 +791,10 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH distinctAU AS (SELECT name, tdb_publisher, MAX(content_size)as content_size FROM au_current GROUP BY name, tdb_publisher) select SUM(CASE WHEN tdb_publisher = 'Universiteit Gent' THEN content_size/2 END) AS \"Universiteit Gent\", SUM(CASE WHEN tdb_publisher = 'UCLouvain' THEN content_size END) AS \"UCLouvain\", SUM(CASE WHEN tdb_publisher = 'Uni. Bielefeld' THEN content_size END) AS \"Universität Bielefeld\", SUM(CASE WHEN tdb_publisher = 'Universite de Geneve' THEN content_size END) AS \"Université de Genève\", SUM(CASE WHEN tdb_publisher = 'Université de Montréal' THEN content_size END) AS \"Université de Montréal\", SUM(CASE WHEN tdb_publisher = 'Lund University' THEN content_size END) AS \"Lund University\" FROM distinctAU;",
+          "rawSql": "SELECT * from plnmonitor.content_per_tdb_publisher",
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "recent_poll_agreement"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "au_current",
+          "select": [],
+          "table": "plnmonitor.content_per_tdb_publisher",
           "timeColumn": "created_at",
           "timeColumnType": "timestamp",
           "where": [
@@ -831,7 +806,7 @@
           ]
         }
       ],
-      "title": "Archival Units per institution",
+      "title": "Archival Units per publisher",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -907,7 +882,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min (extract(epoch from updated_at)*1000 - last_completed_poll) AS \"last completed poll avg\"\nFROM au_version\nWHERE\n  $__timeFilter(updated_at) \nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min (extract(epoch from updated_at)*1000 - last_completed_poll) AS \"last completed poll avg\"\nFROM plnmonitor.au_version\nWHERE\n  $__timeFilter(updated_at) \nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1136,7 +1111,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  lockss_box_info.name as \"LOCKSS box name\",\n  MAX(lockss_box.ipaddress) as \"IP address\",\n  MAX(lockss_box_info.country) as \"Country\",\n  MAX(SPLIT_PART((SUBSTRING(lockss_box.daemon_full_version::text FROM 35 for 7)), ',', 1)) as \"Daemon version\",\n  SUM(lockss_box_data_current.active_aus) as \"Active AUs\",\n  MIN(created_at) as \"Active since\",\n  MAX(SPLIT_PART(SPLIT_PART(lockss_box.platform::text,'=',2), ',', 1)) as \"Platform\",\n  MAX(SPLIT_PART(SPLIT_PART(lockss_box.java_version::text,'=',2), ',', 1)) as \"Java version\"\nFROM lockss_box_info INNER JOIN lockss_box_data_current on lockss_box_info.box=lockss_box_data_current.box\nINNER JOIN lockss_box on lockss_box.id = lockss_box_info.box\nGROUP BY lockss_box_info.name\nORDER BY lockss_box_info.name\n",
+          "rawSql": "SELECT\n  lockss_box_info.name as \"LOCKSS box name\",\n  MAX(lockss_box.ipaddress) as \"IP address\",\n  MAX(lockss_box_info.country) as \"Country\",\n  MAX(SPLIT_PART((SUBSTRING(lockss_box.daemon_full_version::text FROM 35 for 7)), ',', 1)) as \"Daemon version\",\n  SUM(lockss_box_data_current.active_aus) as \"Active AUs\",\n  MIN(created_at) as \"Active since\",\n  MAX(SPLIT_PART(SPLIT_PART(lockss_box.platform::text,'=',2), ',', 1)) as \"Platform\",\n  MAX(SPLIT_PART(SPLIT_PART(lockss_box.java_version::text,'=',2), ',', 1)) as \"Java version\"\nFROM plnmonitor.lockss_box_info INNER JOIN plnmonitor.lockss_box_data_current on lockss_box_info.box=lockss_box_data_current.box\nINNER JOIN plnmonitor.lockss_box on lockss_box.id = lockss_box_info.box\nGROUP BY lockss_box_info.name\nORDER BY lockss_box_info.name\n",
           "refId": "A",
           "select": [
             [
@@ -1324,7 +1299,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "",
+          "rawSql": "select au_current.name,  MAX(CASE WHEN lockss_box_info.name = 'Beersel' THEN recent_poll_agreement END) AS \"Beersel\" , MAX(CASE WHEN lockss_box_info.name = 'Woluwe-Saint-Pierre - Sint-Pieters-Woluwe' THEN recent_poll_agreement END) AS \"Woluwe-Saint-Pierre - Sint-Pieters-Woluwe\" , MAX(CASE WHEN lockss_box_info.name = 'Hiddenhausen' THEN recent_poll_agreement END) AS \"Hiddenhausen\" , MAX(CASE WHEN lockss_box_info.name = 'Ghent' THEN recent_poll_agreement END) AS \"Ghent\" , MAX(CASE WHEN lockss_box_info.name = 'Malmo' THEN recent_poll_agreement END) AS \"Malmo\" , MAX(CASE WHEN lockss_box_info.name = 'Geneva' THEN recent_poll_agreement END) AS \"Geneva\" , MAX(CASE WHEN lockss_box_info.name = 'Montreal' THEN recent_poll_agreement END) AS \"Montreal\" from plnmonitor.au_current inner join plnmonitor.lockss_box_info on au_current.box=lockss_box_info.box GROUP BY 1 ORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1349,117 +1324,6 @@
         }
       ],
       "title": "AU status across the network",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "ulb",
-                "ucl",
-                "unige",
-                "udem",
-                "lund",
-                "ugent",
-                "unibi",
-                "name"
-              ]
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": null,
-            "filterable": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 15,
-        "w": 24,
-        "x": 0,
-        "y": 81
-      },
-      "id": 4,
-      "options": {
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "7.5.5",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "name",
-          "rawQuery": true,
-          "rawSql": "SELECT\n  institution.shortname as \"Location\",\n  lockss_box_info.box,\n  lockss_box_info.organizational_manager,\n  lockss_box_info.technical_manager,\n  CONCAT(person.first_name, ' ', person.name) as \"Name\",\n  person.email_address as \"Email\",\n  lockss_box_info.username,\n  lockss_box_info.country,\n  lockss_box_info.institution\n\n\nFROM lockss_box_info\nINNER JOIN plnmonitor.person ON technical_manager=person.id or organizational_manager=person.id\nINNER JOIN plnmonitor.institution ON lockss_box_info.institution=institution.id",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "organizational_manager"
-                ],
-                "type": "column"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "technical_manager"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "lockss_box_info",
-          "timeColumn": "id",
-          "timeColumnType": "int4",
-          "where": []
-        }
-      ],
-      "title": "Organisational and technical managers",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "box": true,
-              "institution": true,
-              "organizational_manager": true,
-              "technical_manager": true,
-              "time": true
-            },
-            "indexByName": {},
-            "renameByName": {}
-          }
-        }
-      ],
       "type": "table"
     },
     {
@@ -1625,7 +1489,7 @@
           "hide": false,
           "metricColumn": "name",
           "rawQuery": true,
-          "rawSql": "SELECT\n  name AS AU_name,\n  MAX(content_size) AS size,\n  MIN(creation_time) AS ingested_by_network_on,\n  MAX(recent_poll_agreement) AS recent_poll_agreement,\n  MAX(disk_usage) AS Disk_usage,\n  MIN(last_crawl) AS Last_crawl,\n  min(last_poll_result) AS last_poll_result,\n  MAX(last_completed_poll) AS Last_completed_poll,\n  MAX(plugin_name) AS plugin_name,\n  MAX(au_lockss_id) AS au_lockss_id\nFROM au_current\nGROUP BY name\nORDER BY name",
+          "rawSql": "SELECT\n  name AS AU_name,\n  MAX(content_size) AS size,\n  MIN(creation_time) AS ingested_by_network_on,\n  MAX(recent_poll_agreement) AS recent_poll_agreement,\n  MAX(disk_usage) AS Disk_usage,\n  MIN(last_crawl) AS Last_crawl,\n  min(last_poll_result) AS last_poll_result,\n  MAX(last_completed_poll) AS Last_completed_poll,\n  MAX(plugin_name) AS plugin_name,\n  MAX(au_lockss_id) AS au_lockss_id\nFROM plnmonitor.au_current\nGROUP BY name\nORDER BY name",
           "refId": "A",
           "select": [
             [
@@ -1864,7 +1728,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 104
+        "y": 89
       },
       "id": 28,
       "options": {
@@ -1884,7 +1748,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select lockss_box_info.name as \"Box name\", lockss_box.ipaddress as \"Box IP address\", peer_lockss_id as \"Peer IP address\", polls_rejected * 1.0 / (NULLIF(invitation_count,0) * 1.0) as \"polls rejection ratio\", last_message as \"last message received from peer\", invitation_count as \"#invitations sent to peer\", message_count as \"#messages from peer\",  polls_called as \"#polls called by peer\", polls_rejected as \"#polls rejected by peer\",  last_vote as \"last time peer voted\", last_poll as \"last participation in a poll from peer\", last_invitation as \"last time peer was invited in poll\", votes_cast as \"#votes casted by peer\"  from peer INNER JOIN lockss_box on lockss_box.id = peer.box INNER JOIN lockss_box_info on lockss_box_info.box = peer.box where REGEXP_REPLACE(peer_lockss_id, '(TCP:\\[|]:9\\d+)', '', 'g')  in (select ipaddress from lockss_box ) order by peer.box;",
+          "rawSql": "select lockss_box_info.name as \"Box name\", lockss_box.ipaddress as \"Box IP address\", peer_lockss_id as \"Peer IP address\", polls_rejected * 1.0 / (NULLIF(invitation_count,0) * 1.0) as \"polls rejection ratio\", last_message as \"last message received from peer\", invitation_count as \"#invitations sent to peer\", message_count as \"#messages from peer\",  polls_called as \"#polls called by peer\", polls_rejected as \"#polls rejected by peer\",  last_vote as \"last time peer voted\", last_poll as \"last participation in a poll from peer\", last_invitation as \"last time peer was invited in poll\", votes_cast as \"#votes casted by peer\"  from plnmonitor.peer INNER JOIN plnmonitor.lockss_box on lockss_box.id = peer.box INNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = peer.box where REGEXP_REPLACE(peer_lockss_id, '(TCP:\\[|]:9\\d+)', '', 'g')  in (select ipaddress from plnmonitor.lockss_box ) order by peer.box;",
           "refId": "A",
           "select": [
             [
@@ -1910,6 +1774,98 @@
       ],
       "title": "Peers ",
       "type": "table"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 97
+      },
+      "id": 4,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "name",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  institution.shortname as \"Location\",\n  lockss_box_info.box,\n  lockss_box_info.organizational_manager,\n  lockss_box_info.technical_manager,\n  CONCAT(person.first_name, ' ', person.name) as \"Name\",\n  person.email_address as \"Email\",\n  lockss_box_info.username,\n  lockss_box_info.country,\n  lockss_box_info.institution\n\n\nFROM plnmonitor.lockss_box_info\nINNER JOIN plnmonitor.person ON technical_manager=person.id or organizational_manager=person.id\nINNER JOIN plnmonitor.institution ON lockss_box_info.institution=institution.id",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "organizational_manager"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "technical_manager"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "lockss_box_info",
+          "timeColumn": "id",
+          "timeColumnType": "int4",
+          "where": []
+        }
+      ],
+      "title": "Organizational and technical managers",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "box": true,
+              "institution": true,
+              "organizational_manager": true,
+              "technical_manager": true,
+              "time": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
     }
   ],
   "refresh": false,
@@ -1925,7 +1881,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "SAFE PLN monitor",
+  "title": "LOCKSS network monitor",
   "uid": "Hq2_lFjMk",
   "version": 101
 }

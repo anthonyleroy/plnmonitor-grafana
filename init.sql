@@ -9,7 +9,11 @@ SET client_min_messages = warning;
 -- TOC entry 6 (class 2615 OID 2200)
 -- Name: plnmonitor; Type: SCHEMA; Schema: -; Owner: plnmonitor
 --
---CREATE ROLE plnmonitor LOGIN ENCRYPTED PASSWORD 'md5881a5f13bd547a394004e698b0bf7b83' NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
+-- CREATE ROLE plnmonitor LOGIN ENCRYPTED PASSWORD 'md5881a5f13bd547a394004e698b0bf7b83' NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
+
+
+
+
 
 CREATE SCHEMA plnmonitor;
 
@@ -817,18 +821,18 @@ SELECT pg_catalog.setval('"Peers_id_seq"', 11, true);
 
 SELECT pg_catalog.setval('"Person_id_seq"', 10, true);
 
-SELECT pg_catalog.setval('"au_per_publisher_id_seq"', 20, true);
+--SELECT pg_catalog.setval('"au_per_publisher_id_seq"', 20, true);
+
 
 --
 -- CREATE USE grafana with readonly access
 --
+CREATE USER grafana WITH PASSWORD 'grafana';
 
 CREATE ROLE readonly;
 GRANT CONNECT ON DATABASE plnmonitor TO readonly;
 GRANT USAGE ON SCHEMA plnmonitor TO readonly;
 GRANT SELECT ON ALL TABLES IN SCHEMA plnmonitor TO readonly;
 ALTER DEFAULT PRIVILEGES IN SCHEMA plnmonitor GRANT SELECT ON TABLES TO readonly;
-CREATE USER grafana WITH PASSWORD 'grafana';
 GRANT readonly TO grafana;
-
 
