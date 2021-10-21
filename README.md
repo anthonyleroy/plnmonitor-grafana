@@ -1,4 +1,7 @@
-# plnmonitor-installer
+# LOCKSS network dashboard installation 
+
+
+![Dashboard screenshot](https://anthonyleroy.github.io/lockss-dashboard/lockss_network_dashboard.jpg)
 
 First, you need to configure plnmonitor:
 
