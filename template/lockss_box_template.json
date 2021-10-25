@@ -93,7 +93,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT tdb_publisher, SUM (AUsize) AS AU_size from (SELECT au_current.name, tdb_publisher, MAX(content_size) as AUsize\nFROM au_current INNER JOIN lockss_box_info on lockss_box_info.box=au_current.box\nWHERE lockss_box_info.name = 'LOCKSS_BOX_NAME' GROUP BY au_current.name, tdb_publisher) AS TDB GROUP BY tdb_publisher",
+          "rawSql": "SELECT tdb_publisher, SUM (AUsize) AS AU_size from (SELECT au_current.name, tdb_publisher, MAX(content_size) as AUsize\nFROM plnmonitor.au_current INNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box=au_current.box\nWHERE lockss_box_info.name = 'LOCKSS_BOX_NAME' GROUP BY au_current.name, tdb_publisher) AS TDB GROUP BY tdb_publisher",
           "refId": "A",
           "select": [
             [
@@ -180,7 +180,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  name, active_aus\nFROM lockss_box_data_current INNER JOIN lockss_box_info on lockss_box_info.box=lockss_box_data_current.box where name='LOCKSS_BOX_NAME'",
+          "rawSql": "SELECT\n  name, active_aus\nFROM plnmonitor.lockss_box_data_current INNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box=lockss_box_data_current.box where name='LOCKSS_BOX_NAME'",
           "refId": "A",
           "select": [
             [
@@ -349,7 +349,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  MAX(last_completed_poll)\n  \nFROM au_current\nINNER JOIN lockss_box_info on lockss_box_info.box=au_current.box",
+          "rawSql": "SELECT\n  MAX(last_completed_poll)\n  \nFROM plnmonitor.au_current\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box=au_current.box",
           "refId": "A",
           "select": [
             [
@@ -429,7 +429,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  MAX(last_completed_crawl)\n  \nFROM au_current\nINNER JOIN lockss_box_info on lockss_box_info.box=au_current.box",
+          "rawSql": "SELECT\n  MAX(last_completed_crawl)\n  \nFROM plnmonitor.au_current\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box=au_current.box",
           "refId": "A",
           "select": [
             [
@@ -521,7 +521,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min(free) AS \"free\"\nFROM lockss_box_data_version\nINNER JOIN lockss_box_info on lockss_box_data_version.box = lockss_box_info.box\nWHERE\n  $__timeFilter(updated_at) AND\n  lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min(free) AS \"free\"\nFROM plnmonitor.lockss_box_data_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_data_version.box = lockss_box_info.box\nWHERE\n  $__timeFilter(updated_at) AND\n  lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -717,7 +717,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min (extract(epoch from updated_at)*1000 - last_completed_poll) AS \"last completed poll avg\"\nFROM au_version\nINNER JOIN lockss_box_info on lockss_box_info.box = au_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min (extract(epoch from updated_at)*1000 - last_completed_poll) AS \"last completed poll avg\"\nFROM plnmonitor.au_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = au_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -741,7 +741,7 @@
               }
             ]
           ],
-          "table": "au_version",
+          "table": "plnmonitor.au_version",
           "timeColumn": "updated_at",
           "timeColumnType": "timestamptz",
           "where": [
@@ -868,7 +868,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min (extract(epoch from updated_at)*1000 - last_completed_crawl) AS \"last completed crawl avg\"\nFROM au_version\nINNER JOIN lockss_box_info on lockss_box_info.box = au_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min (extract(epoch from updated_at)*1000 - last_completed_crawl) AS \"last completed crawl avg\"\nFROM plnmonitor.au_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = au_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1026,7 +1026,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(size)  AS \"box size\",\n  max(used)  AS \"box used space\"\nFROM lockss_box_data_version\nINNER JOIN lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(size)  AS \"box size\",\n  max(used)  AS \"box used space\"\nFROM plnmonitor.lockss_box_data_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1174,7 +1174,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(free)  AS \"box free space\"\nFROM lockss_box_data_version\nINNER JOIN lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(free)  AS \"box free space\"\nFROM plnmonitor.lockss_box_data_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1331,7 +1331,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(active_aus)  AS \"active AUs\"\nFROM lockss_box_data_version\nINNER JOIN lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(active_aus)  AS \"active AUs\"\nFROM plnmonitor.lockss_box_data_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1478,7 +1478,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(orphaned_aus)  AS \"orphaned AUs\"\nFROM lockss_box_data_version\nINNER JOIN lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(orphaned_aus)  AS \"orphaned AUs\"\nFROM plnmonitor.lockss_box_data_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1624,7 +1624,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(deleted_aus)  AS \"deleted AUs\"\nFROM lockss_box_data_version\nINNER JOIN lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  max(deleted_aus)  AS \"deleted AUs\"\nFROM plnmonitor.lockss_box_data_version\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = lockss_box_data_version.box\nWHERE\n  $__timeFilter(updated_at) and lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1763,7 +1763,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  lockss_box_info.name as \"LOCKSS box name\",\n  (lockss_box.ipaddress) as \"IP address\",\n  (lockss_box_info.country) as \"Country\",\n  (SPLIT_PART((SUBSTRING(lockss_box.daemon_full_version::text FROM 35 for 7)), ',', 1)) as \"Daemon version\",\n  (lockss_box_data_current.active_aus) as \"Active AUs\",\n  (created_at) as \"Active since\",\n  (SPLIT_PART(SPLIT_PART(lockss_box.platform::text,'=',2), ',', 1)) as \"Platform\",\n  (SPLIT_PART(SPLIT_PART(lockss_box.java_version::text,'=',2), ',', 1)) as \"Java version\"\nFROM lockss_box_info INNER JOIN lockss_box_data_current on lockss_box_info.box=lockss_box_data_current.box\nINNER JOIN lockss_box on lockss_box.id = lockss_box_info.box\nWHERE name='LOCKSS_BOX_NAME'\n",
+          "rawSql": "SELECT\n  lockss_box_info.name as \"LOCKSS box name\",\n  (lockss_box.ipaddress) as \"IP address\",\n  (lockss_box_info.country) as \"Country\",\n  (SPLIT_PART((SUBSTRING(lockss_box.daemon_full_version::text FROM 35 for 7)), ',', 1)) as \"Daemon version\",\n  (lockss_box_data_current.active_aus) as \"Active AUs\",\n  (created_at) as \"Active since\",\n  (SPLIT_PART(SPLIT_PART(lockss_box.platform::text,'=',2), ',', 1)) as \"Platform\",\n  (SPLIT_PART(SPLIT_PART(lockss_box.java_version::text,'=',2), ',', 1)) as \"Java version\"\nFROM plnmonitor.lockss_box_info INNER JOIN plnmonitor.lockss_box_data_current on lockss_box_info.box=lockss_box_data_current.box\nINNER JOIN plnmonitor.lockss_box on lockss_box.id = lockss_box_info.box\nWHERE name='LOCKSS_BOX_NAME'\n",
           "refId": "A",
           "select": [
             [
@@ -2045,7 +2045,7 @@
           "hide": false,
           "metricColumn": "name",
           "rawQuery": true,
-          "rawSql": "SELECT\n  au_current.name AS AU_name,\n  MAX(content_size) AS size,\n  MIN(creation_time) AS ingested_by_network_on,\n  MAX(recent_poll_agreement) AS recent_poll_agreement,\n  MAX(disk_usage) AS Disk_usage,\n  MIN(last_crawl) AS Last_crawl,\n  min(last_poll_result) AS last_poll_result,\n  MAX(last_completed_poll) AS Last_completed_poll,\n  MAX(plugin_name) AS plugin_name,\n  MAX(au_lockss_id) AS au_lockss_id\nFROM au_current\nINNER JOIN lockss_box_info on lockss_box_info.box=au_current.box\nWHERE lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY au_current.name\nORDER BY au_current.name",
+          "rawSql": "SELECT\n  au_current.name AS AU_name,\n  MAX(content_size) AS size,\n  MIN(creation_time) AS ingested_by_network_on,\n  MAX(recent_poll_agreement) AS recent_poll_agreement,\n  MAX(disk_usage) AS Disk_usage,\n  MIN(last_crawl) AS Last_crawl,\n  min(last_poll_result) AS last_poll_result,\n  MAX(last_completed_poll) AS Last_completed_poll,\n  MAX(plugin_name) AS plugin_name,\n  MAX(au_lockss_id) AS au_lockss_id\nFROM plnmonitor.au_current\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box=au_current.box\nWHERE lockss_box_info.name = 'LOCKSS_BOX_NAME'\nGROUP BY au_current.name\nORDER BY au_current.name",
           "refId": "A",
           "select": [
             [
@@ -2304,7 +2304,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select lockss_box_info.name as \"Box name\", lockss_box.ipaddress as \"Box IP address\", peer_lockss_id as \"Peer IP address\", polls_rejected * 1.0 / (NULLIF(invitation_count,0) * 1.0) as \"polls rejection ratio\", last_message as \"last message received from peer\", invitation_count as \"#invitations sent to peer\", message_count as \"#messages from peer\",  polls_called as \"#polls called by peer\", polls_rejected as \"#polls rejected by peer\",  last_vote as \"last time peer voted\", last_poll as \"last participation in a poll from peer\", last_invitation as \"last time peer was invited in poll\", votes_cast as \"#votes casted by peer\"  from peer INNER JOIN lockss_box on lockss_box.id = peer.box INNER JOIN lockss_box_info on lockss_box_info.box = peer.box where REGEXP_REPLACE(peer_lockss_id, '(TCP:\\[|]:9\\d+)', '', 'g')  in (select ipaddress from lockss_box ) AND lockss_box_info.name ='LOCKSS_BOX_NAME' order by peer.box;",
+          "rawSql": "select lockss_box_info.name as \"Box name\", lockss_box.ipaddress as \"Box IP address\", peer_lockss_id as \"Peer IP address\", polls_rejected * 1.0 / (NULLIF(invitation_count,0) * 1.0) as \"polls rejection ratio\", last_message as \"last message received from peer\", invitation_count as \"#invitations sent to peer\", message_count as \"#messages from plnmonitor.peer\",  polls_called as \"#polls called by peer\", polls_rejected as \"#polls rejected by peer\",  last_vote as \"last time peer voted\", last_poll as \"last participation in a poll from peer\", last_invitation as \"last time peer was invited in poll\", votes_cast as \"#votes casted by peer\"  from peer INNER JOIN plnmonitor.lockss_box on lockss_box.id = peer.box INNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = peer.box where REGEXP_REPLACE(peer_lockss_id, '(TCP:\\[|]:9\\d+)', '', 'g')  in (select ipaddress from lockss_box ) AND lockss_box_info.name ='LOCKSS_BOX_NAME' order by peer.box;",
           "refId": "A",
           "select": [
             [
