@@ -1,1 +1,3 @@
 **/.DS_Store
+provisioning/dashboards/plnmonitor/**
+provisioning/dashboards/plnmonitor/dashboard.json

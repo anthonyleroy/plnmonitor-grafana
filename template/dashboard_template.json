@@ -1299,7 +1299,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select au_current.name,  MAX(CASE WHEN lockss_box_info.name = 'Beersel' THEN recent_poll_agreement END) AS \"Beersel\" , MAX(CASE WHEN lockss_box_info.name = 'Woluwe-Saint-Pierre - Sint-Pieters-Woluwe' THEN recent_poll_agreement END) AS \"Woluwe-Saint-Pierre - Sint-Pieters-Woluwe\" , MAX(CASE WHEN lockss_box_info.name = 'Hiddenhausen' THEN recent_poll_agreement END) AS \"Hiddenhausen\" , MAX(CASE WHEN lockss_box_info.name = 'Ghent' THEN recent_poll_agreement END) AS \"Ghent\" , MAX(CASE WHEN lockss_box_info.name = 'Malmo' THEN recent_poll_agreement END) AS \"Malmo\" , MAX(CASE WHEN lockss_box_info.name = 'Geneva' THEN recent_poll_agreement END) AS \"Geneva\" , MAX(CASE WHEN lockss_box_info.name = 'Montreal' THEN recent_poll_agreement END) AS \"Montreal\" from plnmonitor.au_current inner join plnmonitor.lockss_box_info on au_current.box=lockss_box_info.box GROUP BY 1 ORDER BY 1",
+          "rawSql": "PIVOTRAWSQLREQUEST",
           "refId": "A",
           "select": [
             [
