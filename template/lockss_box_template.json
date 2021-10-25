@@ -267,7 +267,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select avg(recent_poll_agreement) from au_current",
+          "rawSql": "select avg(recent_poll_agreement) from plnmonitor.au_current",
           "refId": "A",
           "select": [
             [
@@ -1837,7 +1837,7 @@
           "hide": false,
           "metricColumn": "name",
           "rawQuery": true,
-          "rawSql": "SELECT\n  institution.shortname as \"Location\",\n  lockss_box_info.box,\n  lockss_box_info.name,\n  lockss_box_info.organizational_manager,\n  lockss_box_info.technical_manager,\n  CONCAT(person.first_name, ' ', person.name) as \"Name\",\n  person.email_address as \"Email\",\n  lockss_box_info.username,\n  lockss_box_info.country,\n  lockss_box_info.institution\n\n\nFROM lockss_box_info\nINNER JOIN plnmonitor.person ON technical_manager=person.id or organizational_manager=person.id\nINNER JOIN plnmonitor.institution ON lockss_box_info.institution=institution.id\nWHERE lockss_box_info.name = 'LOCKSS_BOX_NAME'",
+          "rawSql": "SELECT\n  institution.shortname as \"Location\",\n  lockss_box_info.box,\n  lockss_box_info.name,\n  lockss_box_info.organizational_manager,\n  lockss_box_info.technical_manager,\n  CONCAT(person.first_name, ' ', person.name) as \"Name\",\n  person.email_address as \"Email\",\n  lockss_box_info.username,\n  lockss_box_info.country,\n  lockss_box_info.institution\n\n\nFROM plnmonitor.lockss_box_info\nINNER JOIN plnmonitor.person ON technical_manager=person.id or organizational_manager=person.id\nINNER JOIN plnmonitor.institution ON lockss_box_info.institution=institution.id\nWHERE lockss_box_info.name = 'LOCKSS_BOX_NAME'",
           "refId": "A",
           "select": [
             [
@@ -2304,7 +2304,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select lockss_box_info.name as \"Box name\", lockss_box.ipaddress as \"Box IP address\", peer_lockss_id as \"Peer IP address\", polls_rejected * 1.0 / (NULLIF(invitation_count,0) * 1.0) as \"polls rejection ratio\", last_message as \"last message received from peer\", invitation_count as \"#invitations sent to peer\", message_count as \"#messages from plnmonitor.peer\",  polls_called as \"#polls called by peer\", polls_rejected as \"#polls rejected by peer\",  last_vote as \"last time peer voted\", last_poll as \"last participation in a poll from peer\", last_invitation as \"last time peer was invited in poll\", votes_cast as \"#votes casted by peer\"  from peer INNER JOIN plnmonitor.lockss_box on lockss_box.id = peer.box INNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = peer.box where REGEXP_REPLACE(peer_lockss_id, '(TCP:\\[|]:9\\d+)', '', 'g')  in (select ipaddress from lockss_box ) AND lockss_box_info.name ='LOCKSS_BOX_NAME' order by peer.box;",
+          "rawSql": "select lockss_box_info.name as \"Box name\", lockss_box.ipaddress as \"Box IP address\", peer_lockss_id as \"Peer IP address\", polls_rejected * 1.0 / (NULLIF(invitation_count,0) * 1.0) as \"polls rejection ratio\", last_message as \"last message received from peer\", invitation_count as \"#invitations sent to peer\", message_count as \"#messages from plnmonitor.peer\",  polls_called as \"#polls called by peer\", polls_rejected as \"#polls rejected by peer\",  last_vote as \"last time peer voted\", last_poll as \"last participation in a poll from peer\", last_invitation as \"last time peer was invited in poll\", votes_cast as \"#votes casted by peer\"  from plnmonitor.peer INNER JOIN plnmonitor.lockss_box on lockss_box.id = peer.box INNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box = peer.box where REGEXP_REPLACE(peer_lockss_id, '(TCP:\\[|]:9\\d+)', '', 'g')  in (select ipaddress from plnmonitor.lockss_box ) AND lockss_box_info.name ='LOCKSS_BOX_NAME' order by peer.box;",
           "refId": "A",
           "select": [
             [
