@@ -1165,7 +1165,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select au_current.name,  MAX(CASE WHEN lockss_box_info.name = 'ULB1' THEN recent_poll_agreement END) AS ULB, MAX(CASE WHEN lockss_box_info.name = 'UCL' THEN recent_poll_agreement END) AS UCL, MAX(CASE WHEN lockss_box_info.name = 'UNIGE' THEN recent_poll_agreement END) AS UNIGE, MAX(CASE WHEN lockss_box_info.name = 'UdeM' THEN recent_poll_agreement END) AS UdeM, MAX(CASE WHEN lockss_box_info.name = 'Lund' THEN recent_poll_agreement END) AS Lund, MAX(CASE WHEN lockss_box_info.name = 'UGent' THEN recent_poll_agreement END) AS UGent,MAX (CASE WHEN lockss_box_info.name = 'Unibi' THEN recent_poll_agreement END) AS Unibi from plnmonitor.au_current inner join plnmonitor.lockss_box_info on au_current.box=lockss_box_info.box where tdb_publisher = 'LOCKSS_TDB_PUBLISHER_NAME'  GROUP BY 1 ORDER BY 1",
+          "rawSql": "PIVOTRAWSQLREQUEST",
           "refId": "A",
           "select": [
             [
