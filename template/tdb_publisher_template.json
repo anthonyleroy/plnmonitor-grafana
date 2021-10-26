@@ -1192,22 +1192,6 @@
       "title": "LOCKSS_TDB_PUBLISHER_NAME AU status across the network",
       "transformations": [
         {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "ulb",
-                "ucl",
-                "unige",
-                "udem",
-                "lund",
-                "ugent",
-                "unibi",
-                "name"
-              ]
-            }
-          }
-        }
       ],
       "type": "table"
     },
