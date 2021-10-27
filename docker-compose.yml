@@ -53,6 +53,7 @@ services:
     environment:
         WAIT_HOSTS: plnmonitordb:5432
         GF_INSTALL_PLUGINS: grafana-worldmap-panel
+        GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/home.json
         USER: plnmonitor
         PASSWORD: plnmonitor
     volumes:
