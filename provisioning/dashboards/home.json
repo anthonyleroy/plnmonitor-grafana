@@ -37,14 +37,13 @@
       },
       "id": 2,
       "options": {
-        "folderId": 0,
         "maxItems": 30,
         "query": "",
         "showHeadings": true,
         "showRecentlyViewed": false,
         "showSearch": true,
         "showStarred": false,
-        "tags": []
+        "tags": ["main"]
       },
       "pluginVersion": "8.2.1",
       "targets": [
@@ -148,14 +147,13 @@
       },
       "id": 3,
       "options": {
-        "folderId": 1,
         "maxItems": 30,
         "query": "",
         "showHeadings": true,
         "showRecentlyViewed": false,
         "showSearch": true,
         "showStarred": false,
-        "tags": []
+        "tags": ["box"]
       },
       "pluginVersion": "8.2.1",
       "targets": [
@@ -200,14 +198,13 @@
       },
       "id": 4,
       "options": {
-        "folderId": 4,
         "maxItems": 30,
         "query": "",
         "showHeadings": true,
         "showRecentlyViewed": false,
         "showSearch": true,
         "showStarred": false,
-        "tags": []
+        "tags": ["tdb_publisher"]
       },
       "pluginVersion": "8.2.1",
       "targets": [

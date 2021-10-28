@@ -25,3 +25,12 @@ datasources:
      password: "grafana"
   version: 1
   readonly: false
+
+- name: Loki
+  type: loki
+  typeName: Loki
+  access: proxy
+  url: 'plnmonloki:3100'
+  basicAuth: false
+  isDefault: false
+  readOnly: false

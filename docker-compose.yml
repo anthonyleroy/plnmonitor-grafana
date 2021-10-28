@@ -1,4 +1,5 @@
 version: "2.2"
+
 services:
   plnmonitordb:
     build: 
@@ -39,6 +40,7 @@ services:
     volumes:
       - ./template:/opt/template
       - ./provisioning:/opt/provisioning
+
   plnmonwebapp:
     build: 
        context: .
@@ -61,6 +63,21 @@ services:
     networks:
       - plnmonnetwork
 
+
+  plnmonloki:
+    build:
+       context: .
+       dockerfile: DockerfileLoki
+    volumes:
+      - ./config:/etc/loki/
+      - ./chunks:/loki/chunks/
+    ports:
+      - "3100:3100"
+      - "7946:7946"
+    command: -config.file=/etc/loki/loki-config.yaml
+    networks:
+      - plnmonnetwork
+#    restart: on-failure
       
 volumes: 
   pln_dbdata:
