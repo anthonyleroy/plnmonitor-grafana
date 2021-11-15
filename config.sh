@@ -5,7 +5,10 @@
 # start plnmonitor database
 docker-compose up --force-recreate  --build -d  plnmonitordb 
 
-until docker exec plnmonitor-grafana_plnmonitordb_1  pg_isready -U plnmonitor; do
+# get container name assigned by docker-compose
+plnmonitor_container_name=`docker-compose ps plnmonitordb | tail -n +3 | awk '{ print $1 }'`;
+
+until docker exec "${plnmonitor_container_name}" pg_isready -U plnmonitor; do
   echo >&2 " Please wait for database to start... (this can take up to one minute)"
   sleep 10
 done
