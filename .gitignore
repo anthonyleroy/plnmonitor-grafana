@@ -1,0 +1,5 @@
+**/.DS_Store
+provisioning/dashboards/dashboard.json
+provisioning/dashboards/home.json
+provisioning/dashboards/boxes/**
+provisioning/dashboards/tdb_publishers/**

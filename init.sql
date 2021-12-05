@@ -1,3 +1,7 @@
+--
+-- PostgreSQL database dump
+--
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -6,24 +10,15 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 6 (class 2615 OID 2200)
 -- Name: plnmonitor; Type: SCHEMA; Schema: -; Owner: plnmonitor
 --
--- CREATE ROLE plnmonitor LOGIN ENCRYPTED PASSWORD 'md5881a5f13bd547a394004e698b0bf7b83' NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
-
-
-
-
 
 CREATE SCHEMA plnmonitor;
 
+
 ALTER SCHEMA plnmonitor OWNER TO plnmonitor;
 
---CREATE DATABASE plnmonitor;
---ALTER DATABASE plnmonitor OWNER TO plnmonitor;
-
--- TOC entry 2399 (class 0 OID 0)
--- Dependencies: 6
+--
 -- Name: SCHEMA plnmonitor; Type: COMMENT; Schema: -; Owner: plnmonitor
 --
 
@@ -31,7 +26,6 @@ COMMENT ON SCHEMA plnmonitor IS 'standard public schema';
 
 
 --
--- TOC entry 192 (class 3079 OID 12123)
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -39,8 +33,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2401 (class 0 OID 0)
--- Dependencies: 192
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
@@ -50,7 +42,6 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = plnmonitor, pg_catalog;
 
 --
--- TOC entry 206 (class 1255 OID 41080)
 -- Name: new_au_insert(); Type: FUNCTION; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -70,7 +61,6 @@ END	$$;
 ALTER FUNCTION plnmonitor.new_au_insert() OWNER TO plnmonitor;
 
 --
--- TOC entry 208 (class 1255 OID 41081)
 -- Name: new_au_update_version(); Type: FUNCTION; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -90,7 +80,6 @@ END$$;
 ALTER FUNCTION plnmonitor.new_au_update_version() OWNER TO plnmonitor;
 
 --
--- TOC entry 207 (class 1255 OID 40977)
 -- Name: new_box_data_insert(); Type: FUNCTION; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -110,7 +99,6 @@ END$$;
 ALTER FUNCTION plnmonitor.new_box_data_insert() OWNER TO plnmonitor;
 
 --
--- TOC entry 205 (class 1255 OID 40975)
 -- Name: new_box_data_update_version(); Type: FUNCTION; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -137,7 +125,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 172 (class 1259 OID 16395)
 -- Name: au_current; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -178,7 +165,6 @@ CREATE TABLE au_current (
 ALTER TABLE au_current OWNER TO plnmonitor;
 
 --
--- TOC entry 182 (class 1259 OID 57355)
 -- Name: AU_current_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -193,8 +179,6 @@ CREATE SEQUENCE "AU_current_id_seq"
 ALTER TABLE "AU_current_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2402 (class 0 OID 0)
--- Dependencies: 182
 -- Name: AU_current_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -202,7 +186,6 @@ ALTER SEQUENCE "AU_current_id_seq" OWNED BY au_current.id;
 
 
 --
--- TOC entry 176 (class 1259 OID 16476)
 -- Name: institution; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -217,7 +200,6 @@ CREATE TABLE institution (
 ALTER TABLE institution OWNER TO plnmonitor;
 
 --
--- TOC entry 185 (class 1259 OID 57387)
 -- Name: Institutions_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -232,8 +214,6 @@ CREATE SEQUENCE "Institutions_id_seq"
 ALTER TABLE "Institutions_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2403 (class 0 OID 0)
--- Dependencies: 185
 -- Name: Institutions_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -241,7 +221,6 @@ ALTER SEQUENCE "Institutions_id_seq" OWNED BY institution.id;
 
 
 --
--- TOC entry 178 (class 1259 OID 24576)
 -- Name: lockss_box_data_current; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -266,7 +245,6 @@ CREATE TABLE lockss_box_data_current (
 ALTER TABLE lockss_box_data_current OWNER TO plnmonitor;
 
 --
--- TOC entry 189 (class 1259 OID 57490)
 -- Name: LOCKSS_box_data_current_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -281,8 +259,6 @@ CREATE SEQUENCE "LOCKSS_box_data_current_id_seq"
 ALTER TABLE "LOCKSS_box_data_current_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2404 (class 0 OID 0)
--- Dependencies: 189
 -- Name: LOCKSS_box_data_current_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -290,7 +266,6 @@ ALTER SEQUENCE "LOCKSS_box_data_current_id_seq" OWNED BY lockss_box_data_current
 
 
 --
--- TOC entry 179 (class 1259 OID 32770)
 -- Name: lockss_box_data_version; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -317,7 +292,6 @@ CREATE TABLE lockss_box_data_version (
 ALTER TABLE lockss_box_data_version OWNER TO plnmonitor;
 
 --
--- TOC entry 190 (class 1259 OID 57520)
 -- Name: LOCKSS_box_data_version_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -332,8 +306,6 @@ CREATE SEQUENCE "LOCKSS_box_data_version_id_seq"
 ALTER TABLE "LOCKSS_box_data_version_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2405 (class 0 OID 0)
--- Dependencies: 190
 -- Name: LOCKSS_box_data_version_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -341,7 +313,6 @@ ALTER SEQUENCE "LOCKSS_box_data_version_id_seq" OWNED BY lockss_box_data_version
 
 
 --
--- TOC entry 173 (class 1259 OID 16403)
 -- Name: lockss_box; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -367,7 +338,6 @@ CREATE TABLE lockss_box (
 ALTER TABLE lockss_box OWNER TO plnmonitor;
 
 --
--- TOC entry 183 (class 1259 OID 57366)
 -- Name: LOCKSS_box_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -382,8 +352,6 @@ CREATE SEQUENCE "LOCKSS_box_id_seq"
 ALTER TABLE "LOCKSS_box_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2406 (class 0 OID 0)
--- Dependencies: 183
 -- Name: LOCKSS_box_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -391,7 +359,6 @@ ALTER SEQUENCE "LOCKSS_box_id_seq" OWNED BY lockss_box.id;
 
 
 --
--- TOC entry 181 (class 1259 OID 41106)
 -- Name: lockss_box_info; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -414,7 +381,6 @@ CREATE TABLE lockss_box_info (
 ALTER TABLE lockss_box_info OWNER TO plnmonitor;
 
 --
--- TOC entry 188 (class 1259 OID 57452)
 -- Name: LOCKSS_box_info_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -429,8 +395,6 @@ CREATE SEQUENCE "LOCKSS_box_info_id_seq"
 ALTER TABLE "LOCKSS_box_info_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2407 (class 0 OID 0)
--- Dependencies: 188
 -- Name: LOCKSS_box_info_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -438,7 +402,6 @@ ALTER SEQUENCE "LOCKSS_box_info_id_seq" OWNED BY lockss_box_info.id;
 
 
 --
--- TOC entry 174 (class 1259 OID 16414)
 -- Name: peer; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -462,7 +425,6 @@ CREATE TABLE peer (
 ALTER TABLE peer OWNER TO plnmonitor;
 
 --
--- TOC entry 186 (class 1259 OID 57397)
 -- Name: Peers_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -477,8 +439,6 @@ CREATE SEQUENCE "Peers_id_seq"
 ALTER TABLE "Peers_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2408 (class 0 OID 0)
--- Dependencies: 186
 -- Name: Peers_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -486,7 +446,6 @@ ALTER SEQUENCE "Peers_id_seq" OWNED BY peer.id;
 
 
 --
--- TOC entry 177 (class 1259 OID 16482)
 -- Name: person; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -503,7 +462,6 @@ CREATE TABLE person (
 ALTER TABLE person OWNER TO plnmonitor;
 
 --
--- TOC entry 184 (class 1259 OID 57377)
 -- Name: Person_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -518,8 +476,6 @@ CREATE SEQUENCE "Person_id_seq"
 ALTER TABLE "Person_id_seq" OWNER TO plnmonitor;
 
 --
--- TOC entry 2409 (class 0 OID 0)
--- Dependencies: 184
 -- Name: Person_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -527,7 +483,6 @@ ALTER SEQUENCE "Person_id_seq" OWNED BY person.id;
 
 
 --
--- TOC entry 180 (class 1259 OID 32789)
 -- Name: au_version; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -570,7 +525,6 @@ CREATE TABLE au_version (
 ALTER TABLE au_version OWNER TO plnmonitor;
 
 --
--- TOC entry 191 (class 1259 OID 57543)
 -- Name: au_version_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -585,8 +539,6 @@ CREATE SEQUENCE au_version_id_seq
 ALTER TABLE au_version_id_seq OWNER TO plnmonitor;
 
 --
--- TOC entry 2410 (class 0 OID 0)
--- Dependencies: 191
 -- Name: au_version_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -594,7 +546,6 @@ ALTER SEQUENCE au_version_id_seq OWNED BY au_version.id;
 
 
 --
--- TOC entry 175 (class 1259 OID 16417)
 -- Name: pln; Type: TABLE; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
@@ -608,7 +559,6 @@ CREATE TABLE pln (
 ALTER TABLE pln OWNER TO plnmonitor;
 
 --
--- TOC entry 187 (class 1259 OID 57440)
 -- Name: pln_id_seq; Type: SEQUENCE; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -623,8 +573,6 @@ CREATE SEQUENCE pln_id_seq
 ALTER TABLE pln_id_seq OWNER TO plnmonitor;
 
 --
--- TOC entry 2411 (class 0 OID 0)
--- Dependencies: 187
 -- Name: pln_id_seq; Type: SEQUENCE OWNED BY; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -659,19 +607,7 @@ CREATE TABLE "user" (
 
 ALTER TABLE "user" OWNER TO plnmonitor;
 
-
---CREATE TABLE au_per_publisher (tdb_publisher text, content_size bigint, id integer NOT NULL);
-
---ALTER TABLE au_per_publisher OWNER TO plnmonitor;
-
---CREATE SEQUENCE au_per_publisher_id_seq start with 1 increment by 1 no minvalue no maxvalue cache 1;
-
---ALTER SEQUENCE au_per_publisher_id_seq OWNED BY au_per_publisher.id;
-
---ALTER TABLE ONLY au_per_publisher ALTER COLUMN id SET DEFAULT nextval('au_per_publisher_id_seq'::regclass);
-
 --
--- TOC entry 2215 (class 2604 OID 57357)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -679,7 +615,6 @@ ALTER TABLE ONLY au_current ALTER COLUMN id SET DEFAULT nextval('"AU_current_id_
 
 
 --
--- TOC entry 2223 (class 2604 OID 57545)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -687,7 +622,6 @@ ALTER TABLE ONLY au_version ALTER COLUMN id SET DEFAULT nextval('au_version_id_s
 
 
 --
--- TOC entry 2219 (class 2604 OID 57389)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -695,7 +629,6 @@ ALTER TABLE ONLY institution ALTER COLUMN id SET DEFAULT nextval('"Institutions_
 
 
 --
--- TOC entry 2216 (class 2604 OID 57368)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -703,7 +636,6 @@ ALTER TABLE ONLY lockss_box ALTER COLUMN id SET DEFAULT nextval('"LOCKSS_box_id_
 
 
 --
--- TOC entry 2221 (class 2604 OID 57492)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -711,7 +643,6 @@ ALTER TABLE ONLY lockss_box_data_current ALTER COLUMN id SET DEFAULT nextval('"L
 
 
 --
--- TOC entry 2222 (class 2604 OID 57522)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -719,7 +650,6 @@ ALTER TABLE ONLY lockss_box_data_version ALTER COLUMN id SET DEFAULT nextval('"L
 
 
 --
--- TOC entry 2224 (class 2604 OID 57454)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -727,7 +657,6 @@ ALTER TABLE ONLY lockss_box_info ALTER COLUMN id SET DEFAULT nextval('"LOCKSS_bo
 
 
 --
--- TOC entry 2217 (class 2604 OID 57399)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -735,7 +664,6 @@ ALTER TABLE ONLY peer ALTER COLUMN id SET DEFAULT nextval('"Peers_id_seq"'::regc
 
 
 --
--- TOC entry 2220 (class 2604 OID 57379)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -743,7 +671,6 @@ ALTER TABLE ONLY person ALTER COLUMN id SET DEFAULT nextval('"Person_id_seq"'::r
 
 
 --
--- TOC entry 2218 (class 2604 OID 57442)
 -- Name: id; Type: DEFAULT; Schema: plnmonitor; Owner: plnmonitor
 --
 
@@ -751,77 +678,268 @@ ALTER TABLE ONLY pln ALTER COLUMN id SET DEFAULT nextval('pln_id_seq'::regclass)
 
 
 --
--- TOC entry 2412 (class 0 OID 0)
--- Dependencies: 182
--- Name: AU_current_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
+-- Name: pkey_au_current; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
-SELECT pg_catalog.setval('"AU_current_id_seq"', 19, true);
-
-
---
--- TOC entry 2413 (class 0 OID 0)
--- Dependencies: 185
--- Name: Institutions_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
---
-
-SELECT pg_catalog.setval('"Institutions_id_seq"', 6, true);
+ALTER TABLE ONLY au_current
+    ADD CONSTRAINT pkey_au_current PRIMARY KEY (id);
 
 
 --
--- TOC entry 2414 (class 0 OID 0)
--- Dependencies: 189
--- Name: LOCKSS_box_data_current_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
+-- Name: pkey_au_version; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
-SELECT pg_catalog.setval('"LOCKSS_box_data_current_id_seq"', 14, true);
-
-
---
--- TOC entry 2415 (class 0 OID 0)
--- Dependencies: 190
--- Name: LOCKSS_box_data_version_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
---
-
-SELECT pg_catalog.setval('"LOCKSS_box_data_version_id_seq"', 221, true);
+ALTER TABLE ONLY au_version
+    ADD CONSTRAINT pkey_au_version PRIMARY KEY (id);
 
 
 --
--- TOC entry 2416 (class 0 OID 0)
--- Dependencies: 183
--- Name: LOCKSS_box_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
+-- Name: pkey_id; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
-SELECT pg_catalog.setval('"LOCKSS_box_id_seq"', 12, true);
-
-
---
--- TOC entry 2417 (class 0 OID 0)
--- Dependencies: 188
--- Name: LOCKSS_box_info_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
---
-
-SELECT pg_catalog.setval('"LOCKSS_box_info_id_seq"', 7, true);
+ALTER TABLE ONLY "user"
+    ADD CONSTRAINT pkey_id PRIMARY KEY (id);
 
 
 --
--- TOC entry 2418 (class 0 OID 0)
--- Dependencies: 186
--- Name: Peers_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
+-- Name: pkey_institution; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
-SELECT pg_catalog.setval('"Peers_id_seq"', 11, true);
+ALTER TABLE ONLY institution
+    ADD CONSTRAINT pkey_institution PRIMARY KEY (id);
 
 
 --
--- TOC entry 2419 (class 0 OID 0)
--- Dependencies: 184
--- Name: Person_id_seq; Type: SEQUENCE SET; Schema: plnmonitor; Owner: plnmonitor
+-- Name: pkey_lockss_box; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
 --
 
-SELECT pg_catalog.setval('"Person_id_seq"', 10, true);
+ALTER TABLE ONLY lockss_box
+    ADD CONSTRAINT pkey_lockss_box PRIMARY KEY (id);
 
---SELECT pg_catalog.setval('"au_per_publisher_id_seq"', 20, true);
+
+--
+-- Name: pkey_lockss_box_data_current; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+ALTER TABLE ONLY lockss_box_data_current
+    ADD CONSTRAINT pkey_lockss_box_data_current PRIMARY KEY (id);
+
+
+--
+-- Name: pkey_lockss_box_data_version; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+ALTER TABLE ONLY lockss_box_data_version
+    ADD CONSTRAINT pkey_lockss_box_data_version PRIMARY KEY (id);
+
+
+--
+-- Name: pkey_lockss_box_info; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+ALTER TABLE ONLY lockss_box_info
+    ADD CONSTRAINT pkey_lockss_box_info PRIMARY KEY (id);
+
+
+--
+-- Name: pkey_peer; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+ALTER TABLE ONLY peer
+    ADD CONSTRAINT pkey_peer PRIMARY KEY (id);
+
+
+--
+-- Name: pkey_person; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+ALTER TABLE ONLY person
+    ADD CONSTRAINT pkey_person PRIMARY KEY (id);
+
+
+--
+-- Name: pkey_pln; Type: CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+ALTER TABLE ONLY pln
+    ADD CONSTRAINT pkey_pln PRIMARY KEY (id);
+
+
+--
+-- Name: fki_LOCKSS_box_info_institution_ID_fkey; Type: INDEX; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+CREATE INDEX "fki_LOCKSS_box_info_institution_ID_fkey" ON lockss_box_info USING btree (institution);
+
+
+--
+-- Name: fki_LOCKSS_box_info_organizational_manager_ID; Type: INDEX; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+CREATE INDEX "fki_LOCKSS_box_info_organizational_manager_ID" ON lockss_box_info USING btree (organizational_manager);
+
+
+--
+-- Name: fki_LOCKSS_box_info_technical_manager_ID_fkey; Type: INDEX; Schema: plnmonitor; Owner: plnmonitor; Tablespace: 
+--
+
+CREATE INDEX "fki_LOCKSS_box_info_technical_manager_ID_fkey" ON lockss_box_info USING btree (technical_manager);
+
+
+--
+-- Name: new_insert; Type: TRIGGER; Schema: plnmonitor; Owner: plnmonitor
+--
+
+CREATE TRIGGER new_insert BEFORE INSERT ON lockss_box_data_current FOR EACH ROW EXECUTE PROCEDURE new_box_data_insert();
+
+
+--
+-- Name: new_insert; Type: TRIGGER; Schema: plnmonitor; Owner: plnmonitor
+--
+
+CREATE TRIGGER new_insert BEFORE INSERT ON au_current FOR EACH ROW EXECUTE PROCEDURE new_au_insert();
+
+
+--
+-- Name: new_update; Type: TRIGGER; Schema: plnmonitor; Owner: plnmonitor
+--
+
+CREATE TRIGGER new_update BEFORE UPDATE ON au_current FOR EACH ROW EXECUTE PROCEDURE new_au_update_version();
+
+
+--
+-- Name: new_version; Type: TRIGGER; Schema: plnmonitor; Owner: plnmonitor
+--
+
+CREATE TRIGGER new_version BEFORE UPDATE ON lockss_box_data_current FOR EACH ROW EXECUTE PROCEDURE new_box_data_update_version();
+
+
+--
+-- Name: fkey_au_current_box_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY au_current
+    ADD CONSTRAINT fkey_au_current_box_id FOREIGN KEY (box) REFERENCES lockss_box(id);
+
+
+--
+-- Name: fkey_au_version_au_current_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY au_version
+    ADD CONSTRAINT fkey_au_version_au_current_id FOREIGN KEY (au_current) REFERENCES au_current(id);
+
+
+--
+-- Name: fkey_au_version_box_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY au_version
+    ADD CONSTRAINT fkey_au_version_box_id FOREIGN KEY (box) REFERENCES lockss_box(id);
+
+
+--
+-- Name: fkey_lockss_box_data_current_box_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box_data_current
+    ADD CONSTRAINT fkey_lockss_box_data_current_box_id FOREIGN KEY (box) REFERENCES lockss_box(id);
+
+
+--
+-- Name: fkey_lockss_box_data_version_box_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box_data_version
+    ADD CONSTRAINT fkey_lockss_box_data_version_box_id FOREIGN KEY (box) REFERENCES lockss_box(id);
+
+
+--
+-- Name: fkey_lockss_box_data_version_data_current_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box_data_version
+    ADD CONSTRAINT fkey_lockss_box_data_version_data_current_id FOREIGN KEY (data_current) REFERENCES lockss_box_data_current(id);
+
+
+--
+-- Name: fkey_lockss_box_info_box_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box_info
+    ADD CONSTRAINT fkey_lockss_box_info_box_id FOREIGN KEY (box) REFERENCES lockss_box(id);
+
+
+--
+-- Name: fkey_lockss_box_info_institution_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box_info
+    ADD CONSTRAINT fkey_lockss_box_info_institution_id FOREIGN KEY (institution) REFERENCES institution(id);
+
+
+--
+-- Name: fkey_lockss_box_info_org_man_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box_info
+    ADD CONSTRAINT fkey_lockss_box_info_org_man_id FOREIGN KEY (organizational_manager) REFERENCES person(id);
+
+
+--
+-- Name: fkey_lockss_box_info_tech_man_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box_info
+    ADD CONSTRAINT fkey_lockss_box_info_tech_man_id FOREIGN KEY (technical_manager) REFERENCES person(id);
+
+
+--
+-- Name: fkey_lockss_box_pln; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY lockss_box
+    ADD CONSTRAINT fkey_lockss_box_pln FOREIGN KEY (pln) REFERENCES pln(id);
+
+
+--
+-- Name: fkey_peer_lockss_box_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY peer
+    ADD CONSTRAINT fkey_peer_lockss_box_id FOREIGN KEY (box) REFERENCES lockss_box(id);
+
+
+--
+-- Name: fkey_person_institution_id; Type: FK CONSTRAINT; Schema: plnmonitor; Owner: plnmonitor
+--
+
+ALTER TABLE ONLY person
+    ADD CONSTRAINT fkey_person_institution_id FOREIGN KEY (institution) REFERENCES institution(id);
+
+
+--
+-- Name: plnmonitor; Type: ACL; Schema: -; Owner: plnmonitor
+--
+
+REVOKE ALL ON SCHEMA plnmonitor FROM PUBLIC;
+REVOKE ALL ON SCHEMA plnmonitor FROM plnmonitor;
+GRANT ALL ON SCHEMA plnmonitor TO plnmonitor;
+GRANT ALL ON SCHEMA plnmonitor TO PUBLIC;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
 
 
 --
