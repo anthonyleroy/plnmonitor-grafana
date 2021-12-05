@@ -1,3 +1,4 @@
 from grafana/loki:latest
 
+USER loki
 EXPOSE 3100

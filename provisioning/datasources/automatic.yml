@@ -34,3 +34,9 @@ datasources:
   basicAuth: false
   isDefault: false
   readOnly: false
+
+- name: Prometheus
+  type: prometheus
+  access: proxy
+  url: 'plnmonprometheus:9090'
+  isDefault: false
