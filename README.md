@@ -89,6 +89,29 @@ Node exporter agents running on the boxes must be configured to collect the foll
 
 LOCKSS boxes should authorize access to input port 9100/TCP for the machine running the dashboard.
 
+## LOCKSS network dashboard components
+
+The schema below provides a description of the different components involved in the LOCKSS network dashboard.
+
+The Grafana component aggregates data from different sources: 
+
+- Status information from each LOCKSS boxes are collected in a Postgres database by the plnmonitor daemon with the DaemonStatusService SOAP API.
+
+- A Promtail agent runs on each LOCKSS box to collect relevant log files. 
+A Loki Docker container running on the dashboard server collects the log files from all the agents running on the LOCKSS boxes.
+
+- A Node exporter agent runs on each LOCKSS box to collect relevant metrics.
+A Prometheus Docker container running on the dashboard server collects those metrics from all the agents runing on the LOCKSS boxes.
+
+The access to Grafana from the Web is secured via a Traefik reverse proxy component handling HTTPs traffic and Let's Encrypt certificate generation. 
+
+![Dashboard alerts and reporting](https://anthonyleroy.github.io/lockss-dashboard/LOCKSS_network_dashboard_components.jpeg)
+
+In all Grafana dashboards, the user can set thresholds on relevant metrics to trigger alerts. Those alerts can be sent through a wide variety of channels. Dedicated status information that is relevant to technical administrators and for managers can thus be sent from the same tool.
+
+![Dashboard alerts and reporting](https://anthonyleroy.github.io/lockss-dashboard/LOCKSS_network_dashboard_alerts_and_reporting.jpeg)
+
+
 ## Known issue 
 
 ### SOAP access to LOCKSS boxes with SSL enabled
