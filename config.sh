@@ -2,6 +2,9 @@
 
 # Configuration of plnmonitor
 
+# create external network
+docker network create web
+
 # start plnmonitor database
 docker-compose up --force-recreate  --build -d  plnmonitordb 
 
