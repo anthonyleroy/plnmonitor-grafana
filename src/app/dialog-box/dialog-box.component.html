@@ -1,0 +1,45 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title> Updating Box <strong>{{local_data.ipAddress}}</strong> info</h1>
+<div mat-dialog-content>
+ 
+<p>
+<mat-form-field>
+    <input placeholder="Name" matInput [(ngModel)]="local_data.name">
+</mat-form-field>
+</p>
+
+<p>
+<mat-form-field>
+<input placeholder="User name" matInput [(ngModel)]="local_data.userName">
+</mat-form-field>
+</p>
+<p>
+<mat-form-field>
+    <input placeholder="Password" matInput [(ngModel)]="local_data.password">
+</mat-form-field>
+</p>
+<p>
+<mat-form-field>
+    <input placeholder="Longitude" matInput [(ngModel)]="local_data.longitude">
+</mat-form-field>
+</p>
+<p>
+<mat-form-field>
+    <input placeholder="Latitude" matInput [(ngModel)]="local_data.latitude">
+</mat-form-field>
+</p>
+<p>
+<mat-form-field>
+    <input placeholder="Country" matInput [(ngModel)]="local_data.country">
+</mat-form-field>
+</p>
+    <!--
+  <ng-template #elseTemplate>
+    Sure to update <b>{{local_data.ipAddress}}</b>?
+  </ng-template>-->
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
