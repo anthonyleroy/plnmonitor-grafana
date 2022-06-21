@@ -77,6 +77,10 @@ An alert can be sent via various customizable channels (email, MS Teams, Slack, 
 ![custom alert](https://anthonyleroy.github.io/lockss-dashboard/create_alerts.jpg)
 
 # Installing the LOCKSS dashboard 
+=======
+**Note: a new web application based on Spring Boot and Angular will soon be released to replace the command-line configuration script used in this version.**
+
+![Dashboard screenshot](https://anthonyleroy.github.io/lockss-dashboard/lockss_network_dashboard.jpg)
 
 First, you need to configure plnmonitor:
 
