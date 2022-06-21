@@ -48,13 +48,33 @@ Finally, a very useful feature is the matrix detailing the status of each AU acr
 ![box_parameters](https://anthonyleroy.github.io/lockss-dashboard/au_across_network.jpg)
 
 ## Dashboard per box
-TBD
+
+Each LOCKSS box in the network gets its own specific dashboard providing detailed status information:
+![box_dashboard](https://anthonyleroy.github.io/lockss-dashboard/box_status_details.jpg)
+
+This dashboard provides details about box storage space and the number of AUs collected by the box: 
+![box_status](https://anthonyleroy.github.io/lockss-dashboard/box_status.jpg)
+
+It also provides information about the peers of the box in the network and combines all log files collected from the box in a single view:
+![box_peers_and_log] box_peers_and_log.jpg
+
+This is particularly helpful for debugging. 
+
+Finally, detailed LOCKSS box metrics (CPU, RAM, network usage...) are also made available from this dashboard:
+![box prometheus](https://anthonyleroy.github.io/lockss-dashboard/box_prometheus.jpg)
 
 ## Dashboard per publisher
-TBD
+
+A specific dashboard is generated for each publisher.
+On this dashboard, one can track where the archives are preserved, the distribution of the archives per collection and other important metrics:
+![publisher details](https://anthonyleroy.github.io/lockss-dashboard/publisher_details.jpg)
+
 
 ## Alerts 
-TBD
+Custom alerts can be assigned to all dashboard components with specific triggers.
+An alert can be sent via various customizable channels (email, MS Teams, Slack, ...).
+
+![custom alert](https://anthonyleroy.github.io/lockss-dashboard/create_alerts.jpg)
 
 # Installing the LOCKSS dashboard 
 
