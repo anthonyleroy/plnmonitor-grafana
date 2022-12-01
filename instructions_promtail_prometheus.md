@@ -327,7 +327,7 @@ Install the node exporter agent:
 # sudo yum install node_exporter
 ```
 
-Create a parameter file for node exporter named /etc/sysconfig/ with the following content:
+Create a parameter file for node exporter named /etc/sysconfig/node_exporter with the following content:
 
 ```
 --collector.cpu --collector.diskstats --collector.processes --collector.filesystem --collector.loadavg --collector.meminfo --collector.filefd --collector.netdev --collector.stat --collector.netstat --collector.systemd --collector.uname --collector.vmstat --collector.time --collector.mdadm --collector.xfs --collector.zfs --collector.tcpstat --collector.bonding --collector.hwmon --collector.arp --web.listen-address=:9100
