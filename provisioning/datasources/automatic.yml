@@ -30,7 +30,7 @@ datasources:
   type: loki
   typeName: Loki
   access: proxy
-  url: 'plnmonloki:3100'
+  url: 'http://plnmonloki:3100'
   basicAuth: false
   isDefault: false
   readOnly: false
@@ -38,5 +38,5 @@ datasources:
 - name: Prometheus
   type: prometheus
   access: proxy
-  url: 'plnmonprometheus:9090'
+  url: 'http://plnmonprometheus:9090'
   isDefault: false
