@@ -435,7 +435,7 @@
             [
               {
                 "params": [
-                  "last_completed_poll"
+                  "last_completed_crawl"
                 ],
                 "type": "column"
               }
