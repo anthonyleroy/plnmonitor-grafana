@@ -178,7 +178,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  $__unixEpochGroupAlias(box,$__interval),\n  count(id) AS \"id\"\nFROM lockss_box_info\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__unixEpochGroupAlias(box,$__interval),\n  count(id) AS \"id\"\nFROM plnmonitor.lockss_box_info\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -621,7 +621,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min(free) AS \"free\"\nFROM lockss_box_data_version\nWHERE\n  $__timeFilter(updated_at)\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(updated_at,$__interval),\n  min(free) AS \"free\"\nFROM plnmonitor.lockss_box_data_version\nWHERE\n  $__timeFilter(updated_at)\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
