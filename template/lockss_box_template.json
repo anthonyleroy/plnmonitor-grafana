@@ -267,7 +267,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select avg(recent_poll_agreement) from plnmonitor.au_current",
+          "rawSql": "SELECT lockss_box_info.name, avg(recent_poll_agreement) FROM plnmonitor.lockss_box_info INNER JOIN plnmonitor.au_current ON lockss_box_info.box=au_current.box  where lockss_box_info.name='LOCKSS_BOX_NAME' group by lockss_box_info.name;",
           "refId": "A",
           "select": [
             [
@@ -349,7 +349,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  MAX(last_completed_poll)\n  \nFROM plnmonitor.au_current\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box=au_current.box",
+          "rawSql": "SELECT lockss_box_info.name, MAX(last_completed_poll) FROM plnmonitor.lockss_box_info INNER JOIN plnmonitor.au_current ON lockss_box_info.box=au_current.box  where lockss_box_info.name='LOCKSS_BOX_NAME' group by lockss_box_info.name;",
           "refId": "A",
           "select": [
             [
@@ -429,13 +429,13 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  MAX(last_completed_crawl)\n  \nFROM plnmonitor.au_current\nINNER JOIN plnmonitor.lockss_box_info on lockss_box_info.box=au_current.box",
+          "rawSql": "SELECT lockss_box_info.name,  MAX(last_completed_crawl) FROM plnmonitor.lockss_box_info INNER JOIN plnmonitor.au_current ON lockss_box_info.box=au_current.box  where lockss_box_info.name='LOCKSS_BOX_NAME' group by lockss_box_info.name;",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "last_completed_poll"
+                  "last_completed_crawl"
                 ],
                 "type": "column"
               }
@@ -1863,7 +1863,7 @@
           "where": []
         }
       ],
-      "title": "Organisational and technical managers",
+      "title": "Organizational and technical managers",
       "transformations": [
         {
           "id": "organize",

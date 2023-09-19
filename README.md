@@ -1,4 +1,84 @@
-# LOCKSS network dashboard installation 
+![Dashboard screenshot](https://anthonyleroy.github.io/lockss-dashboard/lockss_dashboard.jpg)
+
+# LOCKSS dashboard features
+
+The LOCKSS dashboard is based on [Grafana](https://grafana.com/), [Loki](https://grafana.com/oss/loki/) and [Prometheus](https://prometheus.io).
+
+It provides full observability of the preservation network status by combining : 
+- data collected from LOCKSS boxes using the DaemonStatusService API
+- metrics collected from the servers 
+- log files collected from the complete software stack
+
+Based on the lockss.xml property file of your network, this software automatically deploy a Grafana instance and dashboards for each box in the network and for each publisher.
+
+## Home screen
+
+The LOCKSS dashboard home screen provides a global view of the available dashboards:
+- A global network status dashboards
+- A summary of active alerts
+- Specific dashboards per box
+- Specific dashboards per publisher
+
+![Dashboard home](https://anthonyleroy.github.io/lockss-dashboard/lockss_dashboard_home.jpg)
+
+## Global status
+
+The global status dashboard allows administrators to ensure the proper functioning of the network and quickly identify a problem. 
+
+The top banner provides concise information on:
+- the total archive size
+- the number of active LOCKSS boxes
+- the number of active Archival Units preserved in the network
+- the average number of verified copies in the network per Archival Unit
+- the average poll agreement in the network
+- the time elapsed since the last poll has been completed in the network
+
+![Dashboard banner](https://anthonyleroy.github.io/lockss-dashboard/lockss_dashboard_banner.jpg)
+
+The dashboard also provides a map of the network showing the active LOCKSS boxes location and the number of active Archival Units they contain:
+![Network map](https://anthonyleroy.github.io/lockss-dashboard/lockss-network-map.png)
+
+As well as the distribution of archival units per publisher:
+![distribution AU](https://anthonyleroy.github.io/lockss-dashboard/lockss-network-distribution.png)
+
+And details on the LOCKSS box settings :
+![box_parameters](https://anthonyleroy.github.io/lockss-dashboard/locks_box_parameters.jpg)
+
+Finally, a very useful feature is the matrix detailing the status of each AU across the network:
+![box_parameters](https://anthonyleroy.github.io/lockss-dashboard/au_across_network.jpg)
+
+## Dashboard per box
+
+Each LOCKSS box in the network gets its own specific dashboard providing detailed status information:
+![box_dashboard](https://anthonyleroy.github.io/lockss-dashboard/box_status_details.jpg)
+
+This dashboard provides details about box storage space and the number of AUs collected by the box: 
+![box_status](https://anthonyleroy.github.io/lockss-dashboard/box_status.jpg)
+
+It also provides information about the peers of the box in the network and combines all log files collected from the box in a single view:
+![box_peers_and_log] box_peers_and_log.jpg
+
+This is particularly helpful for debugging. 
+
+Finally, detailed LOCKSS box metrics (CPU, RAM, network usage...) are also made available from this dashboard:
+![box prometheus](https://anthonyleroy.github.io/lockss-dashboard/box_prometheus.jpg)
+
+## Dashboard per publisher
+
+A specific dashboard is generated for each publisher.
+On this dashboard, one can track where the archives are preserved, the distribution of the archives per collection and other important metrics:
+![publisher details](https://anthonyleroy.github.io/lockss-dashboard/publisher_details.jpg)
+
+
+## Alerts 
+Custom alerts can be assigned to all dashboard components with specific triggers.
+An alert can be sent via various customizable channels (email, MS Teams, Slack, ...).
+
+![custom alert](https://anthonyleroy.github.io/lockss-dashboard/create_alerts.jpg)
+
+# Installing the LOCKSS dashboard 
+=======
+**Note: a new web application based on Spring Boot and Angular will soon be released to replace the command-line configuration script used in this version.**
 
 ![Dashboard screenshot](https://anthonyleroy.github.io/lockss-dashboard/lockss_network_dashboard.jpg)
 
